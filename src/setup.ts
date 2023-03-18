@@ -63,14 +63,9 @@ export default async (): Promise<{
     await exec("/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh");
 
     action.info("Installing Flox");
-    await exec("yes", [
-      "|",
-      "nix",
-      "profile",
-      "install",
-      "--impure",
-      "'github:flox/floxpkgs#flox.fromCatalog'",
-      "--accept-flake-config",
+    await exec("/bin/bash", [
+      "-c",
+      "yes | nix profile install --impure 'github:flox/floxpkgs#flox.fromCatalog' --accept-flake-config",
     ]);
     nixVersion = await verifyNix();
     floxVersion = await verifyFlox();
