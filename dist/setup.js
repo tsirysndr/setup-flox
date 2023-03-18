@@ -45,13 +45,13 @@ export default async () => {
         action.info("Installing Nix");
         await exec("chmod", ["a+x", installerPath]);
         await getExecOutput(installerPath, ["install", "--no-confirm"]);
+        action.addPath(join(homedir(), ".nix-profile", "bin"));
         await exec("sudo", [
             "chmod",
             "a+x",
             "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh",
         ]);
         await exec("/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh");
-        action.addPath(join(NIX_DIR, "bin"));
         action.info("Installing Flox");
         await exec("sudo", [
             "bash",
