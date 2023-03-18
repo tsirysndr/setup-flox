@@ -64,7 +64,9 @@ export default async (): Promise<{
 
     action.info("Installing Flox");
     await exec("sudo", [
-      "bash -c yes | nix profile install --impure 'github:flox/floxpkgs#flox.fromCatalog' --accept-flake-config",
+      "bash",
+      "-c",
+      "yes | nix profile install --impure 'github:flox/floxpkgs#flox.fromCatalog' --accept-flake-config",
     ]);
     nixVersion = await verifyNix();
     floxVersion = await verifyFlox();
