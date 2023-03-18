@@ -61,6 +61,7 @@ export default async (): Promise<{
       "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh",
     ]);
     await exec("/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh");
+    action.addPath(join(NIX_DIR, "bin"));
 
     action.info("Installing Flox");
     await exec("sudo", [
