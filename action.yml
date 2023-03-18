@@ -1,0 +1,16 @@
+name: Setup Flox
+description: Download, install, and setup Flox to your path.
+author: Tsiry Sandratraina
+branding:
+  icon: play-circle
+  color: purple
+outputs:
+  flox-version:
+    description: The version of Flox that was installed.
+  nix-version:
+    description: The version of Nix that was installed.
+  cache-hit:
+    description: Was the install cached?
+runs:
+  using: node16
+  main: dist/action.js

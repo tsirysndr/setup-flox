@@ -1,0 +1,22 @@
+name: Setup Flox
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  setup-superviseur:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Flox
+        uses: ./
+        with:
+          version: latest
+      - name: Verify Flox
+        run: flox --version
