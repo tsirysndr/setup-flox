@@ -45,7 +45,8 @@ export default async () => {
         action.info("Installing Nix");
         await exec("chmod", ["a+x", installerPath]);
         await getExecOutput(installerPath, ["install", "--no-confirm"]);
-        await exec("chmod", [
+        await exec("sudo", [
+            "chmod",
             "a+x",
             "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh",
         ]);
