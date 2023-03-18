@@ -7,9 +7,9 @@ if (!process.env.RUNNER_TEMP) {
 }
 
 setup()
-  .then(({ nixVersion, floxVersion }) => {
-    action.setOutput("nix-version", nixVersion);
-    action.setOutput("flox-version", floxVersion);
+  .then(({ version, cacheHit }) => {
+    action.setOutput("nix-version", version);
+    action.setOutput("cache-hit", cacheHit);
   })
   .catch((error) => {
     action.setFailed(error.message);
