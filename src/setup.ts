@@ -51,11 +51,11 @@ export default async (): Promise<{
   if (!cacheHit) {
     action.info("Downloading a new version of Nix");
     const installerPath = await downloadTool(INSTALLER_URL);
+    action.addPath(join(homedir(), ".nix-profile", "bin"));
 
     action.info("Installing Nix");
     await exec("chmod", ["a+x", installerPath]);
     await getExecOutput(installerPath, ["install", "--no-confirm"]);
-    action.addPath(join(homedir(), ".nix-profile", "bin"));
     await exec("sudo", [
       "chmod",
       "a+x",
