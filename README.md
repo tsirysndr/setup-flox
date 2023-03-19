@@ -24,7 +24,7 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
       - name: Setup Flox
-        uses: ./
+        uses: tsirysndr/setup-flox@v1
       - name: Verify Flox
         run: flox --version
 ```
