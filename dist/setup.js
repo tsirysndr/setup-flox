@@ -11,6 +11,11 @@ export default async () => {
     if (process.platform === "win32") {
         throw new Error("Flox is not supported on Windows");
     }
+    // verify that nix is installed
+    const { exitCode } = await getExecOutput("nix", ["--version"]);
+    if (exitCode !== 0) {
+        throw new Error("Nix is not installed, please install it first, see https://github.com/DeterminateSystems/nix-installer-action");
+    }
     const cacheKey = `floxcache-${process.platform}-${process.arch}`;
     const cacheEnabled = cache.isFeatureAvailable();
     let cacheHit = false;
