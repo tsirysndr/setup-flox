@@ -21,6 +21,17 @@ export default async (): Promise<{
   let cacheHit = false;
   let version: string | undefined;
 
+  await exec("sudo", [
+    "bash",
+    "-c",
+    "echo 'extra-trusted-substituters = https://cache.floxdev.com' >> /etc/nix/nix.conf",
+  ]);
+  await exec("sudo", [
+    "bash",
+    "-c",
+    "echo 'extra-trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= flox-store-public-0:8c/B+kjIaQ+BloCmNkRUKwaVPFWkriSAd0JJvuDu4F0=' >> /etc/nix/nix.conf",
+  ]);
+
   if (cacheEnabled) {
     const cacheRestored = await restoreCache(
       [NIX_DIR, NIX_INSTALL_DIR],
